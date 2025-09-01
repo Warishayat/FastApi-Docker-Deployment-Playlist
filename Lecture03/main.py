@@ -67,28 +67,24 @@ async def get_post(id: int):
 
 
 def deletPost(id):
-    for post in my_posts:
-        if post['id'] == id:
-            my_posts.remove(post)
-            return {"success":True}
-        return{
-           None
-        }
+    for i,p in enumerate(my_posts):
+        if p['id'] == id:
+            return i
+        return None
 
 
-
-@app.delete("/postdel/{id}")
-async def delet_post(id:int):
+@app.delete("/postdel/{id}",status_code=status.HTTP_204_NO_CONTENT)
+async def delet_post(id: int):
     remove_post = deletPost(id)
-    if remove_post == {None}:
+    if remove_post is None:   
         raise HTTPException(
             status_code=404,
-            detail="No Ppost Found against your id"
+            detail=f"Post with id {id} not found."
         )
-    return{
-        "success":True,
-        "Message" : f"we have deleted this post again the {id}"
-    }
+    my_posts.pop(remove_post)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+#put or patch request 
 
 
 # Now this lecture is all about crud operation. (Creat retrive update  and Delete).
