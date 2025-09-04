@@ -6,3 +6,10 @@ class ValidatePost(BaseModel):
     roll:int
     room:int
     department:str
+
+
+class UpdateData(BaseModel):
+    name:str
+    roll:int
+    room:int
+    department : str

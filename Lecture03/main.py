@@ -1,6 +1,6 @@
 from fastapi import FastAPI,Response,status,HTTPException
 from fastapi.params import Body
-from Models.PostValaidation import ValidatePost
+from Models.PostValaidation import ValidatePost,UpdateData
 
 
 
@@ -14,6 +14,36 @@ my_posts = [
     {"name":"waris hayat abbasi","roll":21368, "room":512 , "department":"Software Engineering","id":1},
     {"name":"Asif hayat abbasi","roll":21668, "room":512 , "department":"Software Engineering","id":2}
     ]
+
+
+
+
+def updateKaro(id):
+    for index, post in enumerate(my_posts):
+        if post['id'] == id:  
+            return index
+    return None
+
+#put or patch request 
+@app.put("/posts/{id}")
+async def update_data(id: int, payload: UpdateData):
+    print("id is:", id)
+    index = updateKaro(id=id)
+    data = payload.dict()  # Convert Pydantic model to dictionary
+
+    if index is None:
+        return {
+            "success": False,
+            "message": "Data not found",
+        }
+
+    my_posts[index] = data
+    return {
+        "success": True,
+        "message": "Updated data successfully",
+        "data": my_posts[index]
+    }
+
 
 
 
@@ -70,7 +100,7 @@ def deletPost(id):
     for i,p in enumerate(my_posts):
         if p['id'] == id:
             return i
-        return None
+    return None
 
 
 @app.delete("/postdel/{id}",status_code=status.HTTP_204_NO_CONTENT)
@@ -84,7 +114,9 @@ async def delet_post(id: int):
     my_posts.pop(remove_post)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
-#put or patch request 
+
+
+
 
 
 # Now this lecture is all about crud operation. (Creat retrive update  and Delete).
