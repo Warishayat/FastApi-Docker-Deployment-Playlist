@@ -5,6 +5,7 @@ from Models.User import UserData
 from Config.database import base,sesssionLocal,get_db,engine
 from sqlalchemy.orm import Session
 from Schemas.Schmas import ModelResponse
+from typing import List
 
 
 User.base.metadata.create_all(bind=engine)
@@ -45,7 +46,7 @@ def getdatabase(db:Session=Depends(get_db)):
     }
 
 
-@app.get("/alluser",response_model=ModelResponse)
+@app.get("/alluser",response_model=List[ModelResponse])
 def getalluser(db:Session=Depends(get_db)):
     alluser = db.query(UserData).all()
     if alluser:
@@ -56,7 +57,7 @@ def getalluser(db:Session=Depends(get_db)):
     )
 
 
-@app.get("/singleuser",response_model=ModelResponse)
+@app.get("/singleuser",response_model=List[ModelResponse])
 def singleUser(id:int,db:Session=Depends(get_db)):
     user = db.query(UserData).filter_by(id=id).first()
     if user:
