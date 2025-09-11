@@ -1,0 +1,51 @@
+# This file is all about the how to add requirements 
+
+# if you are working with venv just run a command "pip freeze"
+
+# All the dependencies that you have used for your project can look that
+
+#in the terminal then create a new command "pip freeze > requirements.txt"
+
+# this will automatically create a requirements file in the root directory 
+
+# of your project and then got to "https://github.com" and then create
+
+# a account by signing in if you are already a github user then login with
+
+# your existing account . then create a brand new repo in the github
+
+# and copy the git link from the repository and then move to vs and clone it
+
+# there or in your local folder where you have already your code "to clone
+
+# the repo you just need to write in terminal " "git clone + url of your 
+
+# remote github repo" and then enter your remote repo will automatically
+
+# getting clone into your local system move all your existing file in to
+
+# that repository which you have just clone and then write some command on terminal
+
+# one thing make sure while creating repository you should set .gitignore
+
+# to python. it will be helpful when you will push the repo from local to
+
+# remote server this thing will automatically ignore your secret file which
+
+# contain your confidential information like api's ,secret etc etc. then after
+
+# moving all your code file in to project repository which you just clone and
+
+# then write some command in terminal "git add ." it will add all ypu chnages 
+
+# then commit that add into remote server by using command "git commit -m "comment that you want to use"
+
+# then write the final command "git push origin main" and it will push all
+
+# into your github and boooooom your code is save into your github.
+
+# thats'it and at the end make sure your .env shoudl not be in your github.
+
+# otherwise some else can breache your data and use for their own purpose.
+
+# and requirements.txt file should be there. that's it.
