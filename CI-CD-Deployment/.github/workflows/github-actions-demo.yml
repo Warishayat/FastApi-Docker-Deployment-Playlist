@@ -1,0 +1,13 @@
+name: Build and Deploy code
+
+on:[push,pull_request]
+
+jobs: 
+  job1:
+  runs-on:ubuntu-latest                          #wat operating system you want to use
+
+  steps:
+  - name: pulling get repo
+  - uses: actions/checkout@v5
+  - name: Say hey to waris
+  - run : echo "hello waris"
